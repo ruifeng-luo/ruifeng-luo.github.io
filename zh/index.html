@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ruifeng Luo 罗睿锋 — AI for Engineering</title>
-<meta name="description" content="Ruifeng Luo (罗睿锋) — researcher in AI for Engineering: vector multimodal models for engineering drawings, AEC benchmarks for LLMs, and intelligent structural design. Creator of ArchCAD-400K and AECBench.">
-<link rel="canonical" href="https://ruifengluo.com/">
+<title>罗睿锋 Ruifeng Luo — 工程智能 AI for Engineering</title>
+<meta name="description" content="罗睿锋（Ruifeng Luo）— 工程智能（AI for Engineering）研究者：工程图纸矢量多模态模型、AEC 领域大模型评测、结构智能设计。ArchCAD-400K 与 AECBench 的作者。">
+<link rel="canonical" href="https://ruifengluo.com/zh/">
 <link rel="alternate" hreflang="en" href="https://ruifengluo.com/">
 <link rel="alternate" hreflang="zh-Hans" href="https://ruifengluo.com/zh/">
 <link rel="alternate" hreflang="x-default" href="https://ruifengluo.com/">
@@ -50,9 +50,9 @@
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: "Source Serif 4", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", Georgia, serif;
     font-size: 17px;
-    line-height: 1.65;
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -72,6 +72,7 @@
     letter-spacing: .08em;
     text-transform: uppercase;
   }
+  .mono:lang(zh-Hans) { letter-spacing: .12em; }
 
   /* ---------- Title block (drawing header) ---------- */
   .dwg-strip {
@@ -94,25 +95,25 @@
     padding: 28px 24px;
   }
   .tb-label { display: block; color: var(--muted); margin-bottom: 4px; }
-  .tb-value { font-family: "IBM Plex Mono", monospace; font-size: 14px; }
+  .tb-value { font-family: "IBM Plex Mono", "PingFang SC", monospace; font-size: 14px; }
   .tb-cell.r2 { border-top: 1px solid var(--line-strong); }
   .rev-flag { color: var(--rev-red); }
 
   h1 {
-    font-family: "Archivo", sans-serif;
+    font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif;
     font-weight: 800;
     font-size: clamp(34px, 6vw, 54px);
-    letter-spacing: -0.015em;
-    line-height: 1.04;
+    letter-spacing: .04em;
+    line-height: 1.08;
   }
-  h1 .cn { font-weight: 600; color: var(--muted); font-size: .55em; letter-spacing: .12em; margin-left: .35em; }
+  h1 .en { font-weight: 600; color: var(--muted); font-size: .5em; letter-spacing: .02em; margin-left: .45em; }
   .tb-role {
     margin-top: 12px;
-    font-family: "Archivo", sans-serif;
+    font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif;
     font-weight: 500;
     font-size: 15px;
     color: var(--muted);
-    line-height: 1.5;
+    line-height: 1.6;
   }
   .tb-role b { color: var(--ink); font-weight: 600; }
 
@@ -158,9 +159,9 @@
     transform: translate(-50%, -50%) rotate(45deg);
   }
   .dim h2 {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 12px; font-weight: 500;
-    letter-spacing: .18em; text-transform: uppercase;
+    font-family: "IBM Plex Mono", "PingFang SC", monospace;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: .3em; text-transform: uppercase;
   }
 
   /* ---------- About ---------- */
@@ -188,7 +189,7 @@
     display: inline-block; width: 9px; height: 9px;
     background: var(--draft-blue); margin-right: 8px;
   }
-  .layer h3 { font-family: "Archivo", sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .layer h3 { font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
   .layer p { font-size: 15.5px; color: var(--muted); }
 
   /* ---------- News ---------- */
@@ -210,7 +211,7 @@
   .venue { color: var(--draft-blue); padding-top: 5px; line-height: 1.8; }
   .venue .role { display: block; color: var(--muted); }
   .pub h3 {
-    font-family: "Archivo", sans-serif;
+    font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif;
     font-size: 18px; font-weight: 700; line-height: 1.35;
   }
   .pub h3 a { color: inherit; }
@@ -221,7 +222,7 @@
   .pub .links a::before { content: "["; color: var(--muted); }
   .pub .links a::after { content: "]"; color: var(--muted); }
   .pub .links a:hover { color: var(--draft-blue); border-bottom: none; }
-  .fullwidth-note { margin-top: 16px; color: var(--muted); font-size: 14.5px; font-style: italic; }
+  .fullwidth-note { margin-top: 16px; color: var(--muted); font-size: 14.5px; }
 
   /* ---------- Footer title block ---------- */
   footer { margin-top: 70px; padding-bottom: 44px; }
@@ -293,50 +294,50 @@
 
   <!-- drawing number strip -->
   <div class="dwg-strip mono" aria-hidden="true">
-    <span>DWG NO. RL-HOME-001</span>
-    <span>PERSONAL ACADEMIC HOMEPAGE</span>
+    <span>图号 RL-HOME-001</span>
+    <span>个人学术主页</span>
   </div>
 
   <!-- title block -->
-  <header class="titleblock" aria-label="Ruifeng Luo, homepage header">
+  <header class="titleblock" aria-label="罗睿锋，主页页眉">
     <div class="tb-main">
-      <h1>Ruifeng Luo<span class="cn">罗睿锋</span></h1>
+      <h1>罗睿锋<span class="en">Ruifeng Luo</span></h1>
       <p class="tb-role">
-        <b>Director, ArchiAI Lab · Arcplus Group</b><br>
-        Ph.D. in Civil Engineering, Tongji University — working on AI for Engineering
+        <b>华建集团 建筑AI实验室 主任</b><br>
+        同济大学土木工程博士 · 研究方向：工程智能（AI for Engineering）
       </p>
     </div>
     <div class="tb-cell c2">
-      <span class="tb-label mono">Date</span>
+      <span class="tb-label mono">日期</span>
       <span class="tb-value">2026.07</span>
     </div>
     <div class="tb-cell">
-      <span class="tb-label mono">Rev</span>
-      <span class="tb-value rev-flag">A — FIRST ISSUE</span>
+      <span class="tb-label mono">版本</span>
+      <span class="tb-value rev-flag">A — 首版</span>
     </div>
     <div class="tb-cell c2 r2">
-      <span class="tb-label mono">Location</span>
-      <span class="tb-value">Shanghai, CN</span>
+      <span class="tb-label mono">地点</span>
+      <span class="tb-value">中国 · 上海</span>
     </div>
     <div class="tb-cell r2">
-      <span class="tb-label mono">Sheet</span>
-      <span class="tb-value">1 OF 1</span>
+      <span class="tb-label mono">张次</span>
+      <span class="tb-value">第 1 张 共 1 张</span>
     </div>
   </header>
 
-  <nav class="navbar mono" aria-label="Sections">
-    <a href="#research">Research</a>
-    <a href="#news">News</a>
-    <a href="#publications">Publications</a>
-    <a href="#contact">Contact</a>
+  <nav class="navbar mono" aria-label="页面导航">
+    <a href="#research">研究方向</a>
+    <a href="#news">动态</a>
+    <a href="#publications">代表论文</a>
+    <a href="#contact">联系</a>
     <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Google Scholar ↗</a>
     <a href="https://github.com/ArchiAI-LAB">GitHub ↗</a>
-    <a href="/zh/" lang="zh-Hans" style="margin-left:auto">中文</a>
+    <a href="/" lang="en" style="margin-left:auto">EN</a>
   </nav>
 
   <!-- Figure 0 : what my models see -->
   <figure class="fig0">
-    <svg viewBox="0 0 880 150" role="img" aria-label="Line drawing of an architectural floor-plan fragment: walls, a door swing, a column grid bubble and dimension lines">
+    <svg viewBox="0 0 880 150" role="img" aria-label="建筑平面图片段线稿：墙体、门扇开启线、轴号圆圈与尺寸标注线">
       <!-- outer walls (double line) -->
       <path class="plan-stroke" d="M120 40 H500 V120 H120 Z"/>
       <path class="plan-stroke plan-thin" d="M126 46 H494 V114 H126 Z"/>
@@ -356,95 +357,95 @@
       <text class="plan-text" x="568" y="63">A-WALL</text>
       <text class="plan-text" x="568" y="103">A-DOOR</text>
     </svg>
-    <figcaption class="fig0-caption mono">Fig. 0 — What my models learn to read: primitives, symbols, layers.</figcaption>
+    <figcaption class="fig0-caption mono">图 0 — 我的模型学着读的东西：图元 · 符号 · 图层</figcaption>
   </figure>
 
   <!-- About -->
-  <section class="about" aria-label="About">
+  <section class="about" aria-label="简介">
     <div>
       <p>
-        I lead the <a href="https://github.com/ArchiAI-LAB">ArchiAI Lab</a> at Arcplus Group in Shanghai,
-        a cross-disciplinary team building AI for the built environment. My research asks one question:
-        <em>can machines read engineering drawings the way engineers do?</em>
+        我在上海负责华建集团<a href="https://github.com/ArchiAI-LAB">建筑AI实验室（ArchiAI Lab）</a>，
+        带领一支跨学科团队研究面向建成环境的人工智能。我的研究始终围绕一个问题：
+        <em>机器能否像工程师一样读懂工程图纸？</em>
       </p>
       <p>
-        Toward that goal, I work on vector multimodal models for CAD drawings, large-scale open datasets
-        (<a href="https://archiai-lab.github.io/ArchCAD.github.io/">ArchCAD-400K</a>, NeurIPS 2025),
-        and domain benchmarks for large language models
-        (<a href="https://arxiv.org/abs/2509.18776">AECBench</a>, <i>Advanced Engineering Informatics</i>).
-        Earlier, my Ph.D. work at Tongji University applied reinforcement learning and Monte-Carlo tree
-        search to structural design. I also serve as an adjunct graduate supervisor at Tongji University.
+        围绕这个目标，我的工作包括 CAD 图纸的矢量多模态模型、大规模开源数据集
+        （<a href="https://archiai-lab.github.io/ArchCAD.github.io/">ArchCAD-400K</a>，NeurIPS 2025）、
+        以及 AEC 领域的大模型评测基准
+        （<a href="https://arxiv.org/abs/2509.18776">AECBench</a>，<i>Advanced Engineering Informatics</i>）。
+        更早之前，我在同济大学的博士研究将强化学习与蒙特卡洛树搜索用于结构智能设计。
+        我同时担任同济大学校外硕士生导师。
       </p>
     </div>
     <div class="portrait">
-      <img src="assets/portrait.jpg" alt="Ruifeng Luo">
+      <img src="../assets/portrait.jpg" alt="罗睿锋">
     </div>
   </section>
 
   <!-- Research -->
-  <section id="research" aria-label="Research">
-    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>Research · by layer</h2><span class="tick" aria-hidden="true"></span></div>
+  <section id="research" aria-label="研究方向">
+    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>研究方向 · 按图层</h2><span class="tick" aria-hidden="true"></span></div>
 
     <div class="layer">
       <span class="layer-code mono"><span class="swatch" aria-hidden="true"></span>L-01 · DRAWING-INTEL</span>
       <div>
-        <h3>Vector multimodal models for engineering drawings</h3>
-        <p>Teaching models to parse CAD natively — panoptic symbol spotting, vector-line representations,
-        and the data engines that make large-scale annotation affordable.</p>
+        <h3>工程图纸矢量多模态模型</h3>
+        <p>让模型原生读懂 CAD——全景符号识别、矢量线表示，
+        以及让大规模标注成本可负担的数据引擎。</p>
       </div>
     </div>
     <div class="layer">
       <span class="layer-code mono"><span class="swatch" aria-hidden="true"></span>L-02 · AEC-LLM-EVAL</span>
       <div>
-        <h3>Evaluating LLMs in the AEC domain</h3>
-        <p>Hierarchical benchmarks that measure what engineering practice actually demands:
-        knowledge memorization, understanding, reasoning, calculation, and application.</p>
+        <h3>AEC 领域大模型评测</h3>
+        <p>分层评测基准，度量工程实践真正需要的能力：
+        知识记忆、理解、推理、计算与应用。</p>
       </div>
     </div>
     <div class="layer">
       <span class="layer-code mono"><span class="swatch" aria-hidden="true"></span>L-03 · STRUCT-GEN</span>
       <div>
-        <h3>Intelligent structural design</h3>
-        <p>Reinforcement learning and Monte-Carlo tree search for generative structural design,
-        from truss layout to topology optimization.</p>
+        <h3>结构智能设计</h3>
+        <p>以强化学习与蒙特卡洛树搜索驱动结构生成式设计，
+        从桁架布局到拓扑优化。</p>
       </div>
     </div>
   </section>
 
   <!-- News -->
-  <section id="news" aria-label="News">
-    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>News</h2><span class="tick" aria-hidden="true"></span></div>
+  <section id="news" aria-label="动态">
+    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>动态</h2><span class="tick" aria-hidden="true"></span></div>
     <ul class="news">
-      <li><time class="mono">2026</time><p><b>AECBench</b> published in <i>Advanced Engineering Informatics</i> (Vol. 71).</p></li>
-      <li><time class="mono">2025</time><p>Two papers accepted at <b>NeurIPS 2025</b>: ArchCAD-400K and “Point or Line?”.</p></li>
-      <li><time class="mono">2025</time><p><b>ArchCAD-400K</b> dataset released on GitHub and Hugging Face — 413K annotations, 5,538 drawings.</p></li>
+      <li><time class="mono">2026</time><p><b>AECBench</b> 发表于 <i>Advanced Engineering Informatics</i>（第 71 卷）。</p></li>
+      <li><time class="mono">2025</time><p>两篇论文被 <b>NeurIPS 2025</b> 接收：ArchCAD-400K 与 “Point or Line?”。</p></li>
+      <li><time class="mono">2025</time><p><b>ArchCAD-400K</b> 数据集在 GitHub 与 Hugging Face 开源——41.3 万条标注、5,538 张图纸。</p></li>
     </ul>
   </section>
 
   <!-- Publications -->
-  <section id="publications" aria-label="Selected publications">
-    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>Selected publications</h2><span class="tick" aria-hidden="true"></span></div>
+  <section id="publications" aria-label="代表论文">
+    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>代表论文</h2><span class="tick" aria-hidden="true"></span></div>
 
     <article class="pub">
-      <div class="venue mono">NeurIPS 2025<span class="role">First author</span></div>
+      <div class="venue mono">NeurIPS 2025<span class="role">第一作者</span></div>
       <div>
         <h3><a href="https://arxiv.org/abs/2503.22346">ArchCAD-400K: A Large-Scale CAD Drawings Dataset and New Baseline for Panoptic Symbol Spotting</a></h3>
-        <p class="desc">413K annotations across 27 categories from 5,538 standardized drawings — 26× larger than the
-        largest prior CAD dataset — with a structure-aware annotation engine and the DPSS baseline.</p>
+        <p class="desc">来自 5,538 张标准化图纸、覆盖 27 个类别的 41.3 万条标注——规模为此前最大 CAD
+        数据集的 26 倍——并提出结构感知标注引擎与 DPSS 基线模型。</p>
         <div class="links mono">
           <a href="https://arxiv.org/abs/2503.22346">arXiv</a>
-          <a href="https://archiai-lab.github.io/ArchCAD.github.io/">Project</a>
-          <a href="https://github.com/ArchiAI-LAB/ArchCAD">Code</a>
-          <a href="https://huggingface.co/papers/2503.22346">Data</a>
+          <a href="https://archiai-lab.github.io/ArchCAD.github.io/">项目主页</a>
+          <a href="https://github.com/ArchiAI-LAB/ArchCAD">代码</a>
+          <a href="https://huggingface.co/papers/2503.22346">数据</a>
         </div>
       </div>
     </article>
 
     <article class="pub">
-      <div class="venue mono">NeurIPS 2025<span class="role">Co-author</span></div>
+      <div class="venue mono">NeurIPS 2025<span class="role">合作作者</span></div>
       <div>
         <h3><a href="https://papers.nips.cc/paper_files/paper/2025/file/4791edcba96fbd82a8962b0f790b52c9-Paper-Conference.pdf">Point or Line? Using Line-based Representation for Panoptic Symbol Spotting in CAD Drawings</a></h3>
-        <p class="desc">VecFormer: a line-based representation of vector primitives for panoptic symbol spotting.</p>
+        <p class="desc">VecFormer：面向 CAD 图纸全景符号识别的矢量图元线表示方法。</p>
         <div class="links mono">
           <a href="https://papers.nips.cc/paper_files/paper/2025/file/4791edcba96fbd82a8962b0f790b52c9-Paper-Conference.pdf">PDF</a>
         </div>
@@ -452,58 +453,58 @@
     </article>
 
     <article class="pub">
-      <div class="venue mono">Adv. Eng. Informatics 2026<span class="role">Corresponding author</span></div>
+      <div class="venue mono">Adv. Eng. Informatics 2026<span class="role">通讯作者</span></div>
       <div>
         <h3><a href="https://arxiv.org/abs/2509.18776">AECBench: A Hierarchical Benchmark for Knowledge Evaluation of Large Language Models in the AEC Field</a></h3>
-        <p class="desc">4,800 questions, 23 tasks, five cognitive levels — the first hierarchical benchmark of LLM
-        knowledge for architecture, engineering and construction.</p>
+        <p class="desc">4,800 道题、23 项任务、五级认知层次——首个面向建筑工程（AEC）领域的大模型知识
+        分层评测基准。</p>
         <div class="links mono">
           <a href="https://arxiv.org/abs/2509.18776">arXiv</a>
-          <a href="https://github.com/ArchiAI-LAB/AECBench">Code</a>
+          <a href="https://github.com/ArchiAI-LAB/AECBench">代码</a>
         </div>
       </div>
     </article>
 
     <article class="pub">
-      <div class="venue mono">Buildings 2022<span class="role">First author</span></div>
+      <div class="venue mono">Buildings 2022<span class="role">第一作者</span></div>
       <div>
         <h3><a href="https://www.mdpi.com/2075-5309/12/5/641">AlphaTruss: Monte Carlo Tree Search for Optimal Truss Layout Design</a></h3>
-        <p class="desc">MCTS for truss layout under stress, displacement and buckling constraints.</p>
+        <p class="desc">在应力、位移与屈曲约束下，用蒙特卡洛树搜索求解桁架布局最优设计。</p>
         <div class="links mono">
-          <a href="https://www.mdpi.com/2075-5309/12/5/641">Paper</a>
+          <a href="https://www.mdpi.com/2075-5309/12/5/641">论文</a>
         </div>
       </div>
     </article>
 
     <p class="fullwidth-note">
-      Full list on <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Google Scholar</a>.
+      完整论文列表见 <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Google Scholar</a>。
     </p>
   </section>
 
   <!-- Contact / footer -->
-  <footer id="contact" aria-label="Contact">
+  <footer id="contact" aria-label="联系方式">
     <div class="footblock">
       <div class="tb-cell">
-        <span class="tb-label mono">Contact</span>
+        <span class="tb-label mono">联系</span>
         <div class="contact-links">
           <a href="mailto:ruifengluo.tj@gmail.com">ruifengluo.tj@gmail.com</a>
         </div>
       </div>
       <div class="tb-cell">
-        <span class="tb-label mono">Profiles</span>
+        <span class="tb-label mono">档案</span>
         <div class="contact-links">
           <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Scholar</a>
           <a href="https://github.com/ArchiAI-LAB">GitHub</a>
         </div>
       </div>
       <div class="tb-cell">
-        <span class="tb-label mono">Drawn by</span>
-        <span class="tb-value">R. LUO</span>
+        <span class="tb-label mono">设计人</span>
+        <span class="tb-value">罗睿锋</span>
       </div>
     </div>
     <div class="foot-strip mono">
-      <span>© 2026 Ruifeng Luo</span>
-      <span>Set in Archivo · Source Serif · Plex Mono</span>
+      <span>© 2026 罗睿锋 Ruifeng Luo</span>
+      <span>Archivo · Source Serif · Plex Mono</span>
     </div>
   </footer>
 
