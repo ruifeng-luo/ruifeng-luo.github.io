@@ -133,15 +133,30 @@
     fill: none;
     stroke: var(--draft-blue);
     stroke-width: 1.4;
-    stroke-dasharray: 1200;
-    stroke-dashoffset: 1200;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
     animation: draw 2.8s ease-out forwards;
   }
   .fig0 .plan-thin { stroke-width: .8; opacity: .55; animation-delay: .9s; }
-  .fig0 .plan-text { font-family: "IBM Plex Mono", monospace; font-size: 9px; fill: var(--muted); }
+  .fig0 .plan-grid {
+    fill: none;
+    stroke: var(--draft-blue);
+    stroke-width: .7;
+    opacity: .4;
+    stroke-dasharray: 10 5 2 5;
+    animation: planfade 1.2s ease .4s both;
+  }
+  .fig0 .plan-col { fill: var(--draft-blue); animation: planfade .9s ease 1s both; }
+  .fig0 .plan-text {
+    font-family: "IBM Plex Mono", "PingFang SC", monospace; font-size: 9px; fill: var(--muted);
+    animation: planfade .9s ease 1.5s both;
+  }
+  .fig0 .plan-lbl { font-size: 11px; fill: var(--ink); }
   @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes planfade { from { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
     .fig0 .plan-stroke { animation: none; stroke-dashoffset: 0; }
+    .fig0 .plan-grid, .fig0 .plan-col, .fig0 .plan-text { animation: none; }
   }
   .fig0-caption { color: var(--muted); margin-top: 10px; }
 
@@ -261,6 +276,7 @@
     .fig0 { padding: 26px 0 2px; }
     .fig0 .plan-stroke { stroke-width: 2.4; }
     .fig0 .plan-thin { stroke-width: 1.3; }
+    .fig0 .plan-grid { stroke-width: 1.1; }
     .fig0 .plan-text { font-size: 15px; }
     .footblock { grid-template-columns: 1fr; }
     .footblock .tb-cell { border-left: none; }
@@ -337,25 +353,59 @@
 
   <!-- Figure 0 : what my models see -->
   <figure class="fig0">
-    <svg viewBox="0 0 880 150" role="img" aria-label="建筑平面图片段线稿：墙体、门扇开启线、轴号圆圈与尺寸标注线">
-      <!-- outer walls (double line) -->
-      <path class="plan-stroke" d="M120 40 H500 V120 H120 Z"/>
-      <path class="plan-stroke plan-thin" d="M126 46 H494 V114 H126 Z"/>
-      <!-- interior partition -->
-      <path class="plan-stroke" d="M310 40 V78 M310 96 V120"/>
-      <!-- door swing -->
-      <path class="plan-stroke" d="M310 78 A 18 18 0 0 1 328 96"/>
-      <!-- column grid bubble A -->
-      <path class="plan-stroke plan-thin" d="M120 40 V14"/>
-      <circle class="plan-stroke plan-thin" cx="120" cy="12" r="9"/>
-      <!-- dimension line below -->
-      <path class="plan-stroke plan-thin" d="M120 138 H500 M120 130 V146 M500 130 V146 M116 142 l8 -8 M496 142 l8 -8"/>
-      <!-- annotation leaders, right side -->
-      <path class="plan-stroke plan-thin" d="M500 60 h60 M500 100 h60"/>
-      <text class="plan-text" x="114" y="15.5">A</text>
-      <text class="plan-text" x="296" y="134">3600</text>
-      <text class="plan-text" x="568" y="63">A-WALL</text>
-      <text class="plan-text" x="568" y="103">A-DOOR</text>
+    <svg viewBox="0 0 880 250" role="img" aria-label="建筑平面图片段：轴网与轴号圈、双线墙体、门扇开启弧线、窗樘、房间标注、两级尺寸链、图层引注与指北针">
+      <!-- 轴网（点划线） -->
+      <path class="plan-grid" d="M140 31 V210 M420 31 V210 M700 31 V210 M99 60 H740 M99 190 H740"/>
+      <!-- 轴号圈 -->
+      <circle class="plan-stroke plan-thin" cx="140" cy="20" r="11"/>
+      <circle class="plan-stroke plan-thin" cx="420" cy="20" r="11"/>
+      <circle class="plan-stroke plan-thin" cx="700" cy="20" r="11"/>
+      <circle class="plan-stroke plan-thin" cx="88" cy="60" r="11"/>
+      <circle class="plan-stroke plan-thin" cx="88" cy="190" r="11"/>
+      <text class="plan-text" x="140" y="23.5" text-anchor="middle">1</text>
+      <text class="plan-text" x="420" y="23.5" text-anchor="middle">2</text>
+      <text class="plan-text" x="700" y="23.5" text-anchor="middle">3</text>
+      <text class="plan-text" x="88" y="63.5" text-anchor="middle">A</text>
+      <text class="plan-text" x="88" y="193.5" text-anchor="middle">B</text>
+      <!-- 轴线交点柱 -->
+      <rect class="plan-col" x="135" y="55" width="10" height="10"/>
+      <rect class="plan-col" x="415" y="55" width="10" height="10"/>
+      <rect class="plan-col" x="695" y="55" width="10" height="10"/>
+      <rect class="plan-col" x="135" y="185" width="10" height="10"/>
+      <rect class="plan-col" x="415" y="185" width="10" height="10"/>
+      <rect class="plan-col" x="695" y="185" width="10" height="10"/>
+      <!-- 外墙双线，预留门窗洞口 -->
+      <path class="plan-stroke" d="M180 55 H135 V195 H230 M330 195 H705 V150 M705 100 V55 H230"/>
+      <path class="plan-stroke plan-thin" d="M180 65 H145 V185 H230 M330 185 H695 V150 M695 100 V65 H230"/>
+      <!-- 洞口侧壁 -->
+      <path class="plan-stroke" d="M180 55 V65 M230 55 V65 M230 185 V195 M330 185 V195 M695 100 H705 M695 150 H705"/>
+      <!-- 2 轴内隔墙，留门洞 -->
+      <path class="plan-stroke" d="M416 65 V118 M416 168 V185 M424 65 V118 M424 168 V185 M416 118 H424 M416 168 H424"/>
+      <!-- 窗（三线窗樘） -->
+      <path class="plan-stroke plan-thin" d="M230 187 H330 M230 190 H330 M230 193 H330 M696 100 V150 M700 100 V150 M704 100 V150"/>
+      <!-- 门扇与开启弧线 -->
+      <path class="plan-stroke" d="M230 65 V115 M230 115 A50 50 0 0 1 180 65"/>
+      <path class="plan-stroke" d="M424 168 H474 M474 168 A50 50 0 0 0 424 118"/>
+      <!-- 尺寸链：引出线、两道尺寸、起止符 -->
+      <path class="plan-stroke plan-thin" d="M140 208 V236 M420 208 V216 M700 208 V236 M140 212 H700 M140 232 H700 M136 216 l8 -8 M416 216 l8 -8 M696 216 l8 -8 M136 236 l8 -8 M696 236 l8 -8"/>
+      <text class="plan-text" x="280" y="207" text-anchor="middle">7200</text>
+      <text class="plan-text" x="560" y="207" text-anchor="middle">7200</text>
+      <text class="plan-text" x="420" y="227" text-anchor="middle">14400</text>
+      <!-- 房间标注 -->
+      <text class="plan-text plan-lbl" x="280" y="115" text-anchor="middle">办公</text>
+      <text class="plan-text" x="280" y="130" text-anchor="middle">21.5 m²</text>
+      <text class="plan-text plan-lbl" x="560" y="140" text-anchor="middle">会议</text>
+      <text class="plan-text" x="560" y="155" text-anchor="middle">21.5 m²</text>
+      <!-- 图层引注 -->
+      <path class="plan-stroke plan-thin" d="M705 75 H740 M706 125 H740 M460 166 L620 95 H740"/>
+      <text class="plan-text" x="746" y="78.5">A-WALL</text>
+      <text class="plan-text" x="746" y="128.5">A-GLAZ</text>
+      <text class="plan-text" x="746" y="98.5">A-DOOR</text>
+      <!-- 指北针 -->
+      <circle class="plan-stroke plan-thin" cx="810" cy="40" r="13"/>
+      <path class="plan-stroke plan-thin" d="M810 51 V29"/>
+      <path class="plan-col" d="M810 26 l-4.5 9 h9 z"/>
+      <text class="plan-text" x="810" y="18" text-anchor="middle">N</text>
     </svg>
     <figcaption class="fig0-caption mono">图 0 — 我的模型学着读的东西：图元 · 符号 · 图层</figcaption>
   </figure>
