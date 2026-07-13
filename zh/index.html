@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>罗睿锋 Ruifeng Luo — 工程智能 AI for Engineering</title>
+<meta name="description" content="罗睿锋（Ruifeng Luo）— 工程智能（AI for Engineering）研究者：工程图纸矢量多模态模型、AEC 领域大模型评测、结构智能设计。ArchCAD-400K 与 AECBench 的作者。">
+<link rel="canonical" href="https://ruifengluo.com/zh/">
+<link rel="alternate" hreflang="en" href="https://ruifengluo.com/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ruifengluo.com/zh/">
+<link rel="alternate" hreflang="x-default" href="https://ruifengluo.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' fill='%23FBFAF6' stroke='%2324519B' stroke-width='2.5'/%3E%3Ctext x='16' y='21.5' font-family='monospace' font-size='13' font-weight='bold' fill='%2324519B' text-anchor='middle'%3ERL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFAF6;
+    --cell: #FFFFFF;
+    --ink: #191B1F;
+    --muted: #5C5F66;
+    --line: #C9C5BB;
+    --line-strong: #191B1F;
+    --draft-blue: #24519B;
+    --rev-red: #B5402E;
+    --hatch: repeating-linear-gradient(45deg, transparent 0 6px, rgba(36,81,155,.18) 6px 7px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0F1B2D;
+      --cell: #13233A;
+      --ink: #DCE6F5;
+      --muted: #93A5C0;
+      --line: #2C4160;
+      --line-strong: #B9CCE8;
+      --draft-blue: #8FB4EE;
+      --rev-red: #E58877;
+      --hatch: repeating-linear-gradient(45deg, transparent 0 6px, rgba(143,180,238,.22) 6px 7px);
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Serif 4", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet { max-width: 920px; margin: 0 auto; padding: 40px 24px 0; }
+
+  a { color: var(--draft-blue); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover { border-bottom-color: currentColor; }
+  a:focus-visible, .navbar a:focus-visible {
+    outline: 2px solid var(--draft-blue);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .mono:lang(zh-Hans) { letter-spacing: .12em; }
+
+  /* ---------- Title block (drawing header) ---------- */
+  .dwg-strip {
+    display: flex; justify-content: space-between; gap: 16px;
+    color: var(--muted);
+    padding-bottom: 8px;
+  }
+  .titleblock {
+    border: 2px solid var(--line-strong);
+    display: grid;
+    grid-template-columns: 1fr 150px 150px;
+    grid-template-rows: auto auto;
+    background: var(--cell);
+  }
+  .tb-cell { padding: 14px 18px 12px; border-left: 1px solid var(--line-strong); }
+  .tb-main {
+    grid-row: 1 / 3; grid-column: 1;
+    border-left: none;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 28px 24px;
+  }
+  .tb-label { display: block; color: var(--muted); margin-bottom: 4px; }
+  .tb-value { font-family: "IBM Plex Mono", "PingFang SC", monospace; font-size: 14px; }
+  .tb-cell.r2 { border-top: 1px solid var(--line-strong); }
+  .rev-flag { color: var(--rev-red); }
+
+  h1 {
+    font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-weight: 800;
+    font-size: clamp(34px, 6vw, 54px);
+    letter-spacing: .04em;
+    line-height: 1.08;
+  }
+  h1 .en { font-weight: 600; color: var(--muted); font-size: .5em; letter-spacing: .02em; margin-left: .45em; }
+  .tb-role {
+    margin-top: 12px;
+    font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .tb-role b { color: var(--ink); font-weight: 600; }
+
+  .navbar {
+    display: flex; flex-wrap: wrap; gap: 4px 26px;
+    border: 2px solid var(--line-strong); border-top: none;
+    background: var(--cell);
+    padding: 10px 24px;
+  }
+  .navbar a { color: var(--ink); border-bottom: none; }
+  .navbar a:hover { color: var(--draft-blue); }
+
+  /* ---------- Figure 0: self-drawing plan fragment ---------- */
+  .fig0 { padding: 34px 8px 6px; }
+  .fig0 svg { width: 100%; height: auto; display: block; }
+  .fig0 .plan-stroke {
+    fill: none;
+    stroke: var(--draft-blue);
+    stroke-width: 1.4;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: draw 2.8s ease-out forwards;
+  }
+  .fig0 .plan-thin { stroke-width: .8; opacity: .55; animation-delay: .9s; }
+  .fig0 .plan-text { font-family: "IBM Plex Mono", monospace; font-size: 9px; fill: var(--muted); }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .fig0 .plan-stroke { animation: none; stroke-dashoffset: 0; }
+  }
+  .fig0-caption { color: var(--muted); margin-top: 10px; }
+
+  /* ---------- Dimension-line section dividers ---------- */
+  .dim {
+    display: flex; align-items: center; gap: 14px;
+    margin: 54px 0 26px;
+    color: var(--ink);
+  }
+  .dim::before, .dim::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
+  .dim .tick { width: 10px; height: 10px; position: relative; flex: none; }
+  .dim .tick::before {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 12px; height: 1.5px; background: var(--line-strong);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  .dim h2 {
+    font-family: "IBM Plex Mono", "PingFang SC", monospace;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: .3em; text-transform: uppercase;
+  }
+
+  /* ---------- About ---------- */
+  .about { display: grid; grid-template-columns: 1fr 180px; gap: 32px; align-items: start; }
+  .about p + p { margin-top: 14px; }
+  .portrait {
+    border: 1px solid var(--line-strong);
+    background: var(--hatch), var(--cell);
+    aspect-ratio: 4 / 5;
+    display: flex; align-items: end; justify-content: center;
+    padding-bottom: 10px;
+    color: var(--muted);
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ---------- Research layers ---------- */
+  .layer {
+    display: grid; grid-template-columns: 190px 1fr; gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+  .layer:last-child { border-bottom: 1px solid var(--line); }
+  .layer-code { color: var(--draft-blue); padding-top: 4px; }
+  .layer-code .swatch {
+    display: inline-block; width: 9px; height: 9px;
+    background: var(--draft-blue); margin-right: 8px;
+  }
+  .layer h3 { font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .layer p { font-size: 15.5px; color: var(--muted); }
+
+  /* ---------- News ---------- */
+  .news { list-style: none; }
+  .news li {
+    display: grid; grid-template-columns: 90px 1fr; gap: 18px;
+    padding: 9px 0; border-top: 1px solid var(--line);
+  }
+  .news li:last-child { border-bottom: 1px solid var(--line); }
+  .news time { color: var(--muted); padding-top: 3px; }
+  .news p { font-size: 16px; }
+
+  /* ---------- Publications ---------- */
+  .pub {
+    display: grid; grid-template-columns: 130px 1fr; gap: 20px;
+    padding: 20px 0; border-top: 1px solid var(--line);
+  }
+  .pub:last-of-type { border-bottom: 1px solid var(--line); }
+  .venue { color: var(--draft-blue); padding-top: 5px; line-height: 1.8; }
+  .venue .role { display: block; color: var(--muted); }
+  .pub h3 {
+    font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 18px; font-weight: 700; line-height: 1.35;
+  }
+  .pub h3 a { color: inherit; }
+  .pub h3 a:hover { color: var(--draft-blue); border-bottom: none; }
+  .pub .desc { font-size: 15.5px; color: var(--muted); margin-top: 5px; }
+  .pub .links { margin-top: 9px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .pub .links a { color: var(--ink); }
+  .pub .links a::before { content: "["; color: var(--muted); }
+  .pub .links a::after { content: "]"; color: var(--muted); }
+  .pub .links a:hover { color: var(--draft-blue); border-bottom: none; }
+  .fullwidth-note { margin-top: 16px; color: var(--muted); font-size: 14.5px; }
+
+  /* ---------- Footer title block ---------- */
+  footer { margin-top: 70px; padding-bottom: 44px; }
+  .footblock {
+    border: 2px solid var(--line-strong);
+    background: var(--cell);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .footblock .tb-cell:first-child { border-left: none; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 2px; }
+  .foot-strip { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); padding-top: 8px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 640px) {
+    .titleblock { grid-template-columns: 1fr 1fr; }
+    .tb-main { grid-column: 1 / 3; grid-row: 1; border-bottom: 1px solid var(--line-strong); padding: 22px 18px; }
+    .tb-cell { border-left: none; }
+    .tb-cell.c2 { border-left: 1px solid var(--line-strong); }
+    .tb-cell.r2 { border-top: 1px solid var(--line-strong); }
+    .about { grid-template-columns: 1fr; }
+    .portrait { max-width: 200px; }
+    .layer, .pub { grid-template-columns: 1fr; gap: 6px; }
+    .news li { grid-template-columns: 72px 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- drawing number strip -->
+  <div class="dwg-strip mono" aria-hidden="true">
+    <span>图号 RL-HOME-001</span>
+    <span>个人学术主页</span>
+  </div>
+
+  <!-- title block -->
+  <header class="titleblock" aria-label="罗睿锋，主页页眉">
+    <div class="tb-main">
+      <h1>罗睿锋<span class="en">Ruifeng Luo</span></h1>
+      <p class="tb-role">
+        <b>华建集团 建筑AI实验室 主任</b><br>
+        同济大学土木工程博士 · 研究方向：工程智能（AI for Engineering）
+      </p>
+    </div>
+    <div class="tb-cell c2">
+      <span class="tb-label mono">日期</span>
+      <span class="tb-value">2026.07</span>
+    </div>
+    <div class="tb-cell">
+      <span class="tb-label mono">版本</span>
+      <span class="tb-value rev-flag">A — 首版</span>
+    </div>
+    <div class="tb-cell c2 r2">
+      <span class="tb-label mono">地点</span>
+      <span class="tb-value">中国 · 上海</span>
+    </div>
+    <div class="tb-cell r2">
+      <span class="tb-label mono">张次</span>
+      <span class="tb-value">第 1 张 共 1 张</span>
+    </div>
+  </header>
+
+  <nav class="navbar mono" aria-label="页面导航">
+    <a href="#research">研究方向</a>
+    <a href="#news">动态</a>
+    <a href="#publications">代表论文</a>
+    <a href="#contact">联系</a>
+    <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Google Scholar ↗</a>
+    <a href="https://github.com/ArchiAI-LAB">GitHub ↗</a>
+    <a href="/" lang="en" style="margin-left:auto">EN</a>
+  </nav>
+
+  <!-- Figure 0 : what my models see -->
+  <figure class="fig0">
+    <svg viewBox="0 0 880 150" role="img" aria-label="建筑平面图片段线稿：墙体、门扇开启线、轴号圆圈与尺寸标注线">
+      <!-- outer walls (double line) -->
+      <path class="plan-stroke" d="M120 40 H500 V120 H120 Z"/>
+      <path class="plan-stroke plan-thin" d="M126 46 H494 V114 H126 Z"/>
+      <!-- interior partition -->
+      <path class="plan-stroke" d="M310 40 V78 M310 96 V120"/>
+      <!-- door swing -->
+      <path class="plan-stroke" d="M310 78 A 18 18 0 0 1 328 96"/>
+      <!-- column grid bubble A -->
+      <path class="plan-stroke plan-thin" d="M120 40 V14"/>
+      <circle class="plan-stroke plan-thin" cx="120" cy="12" r="9"/>
+      <!-- dimension line below -->
+      <path class="plan-stroke plan-thin" d="M120 138 H500 M120 130 V146 M500 130 V146 M116 142 l8 -8 M496 142 l8 -8"/>
+      <!-- annotation leaders, right side -->
+      <path class="plan-stroke plan-thin" d="M500 60 h60 M500 100 h60"/>
+      <text class="plan-text" x="114" y="15.5">A</text>
+      <text class="plan-text" x="296" y="134">3600</text>
+      <text class="plan-text" x="568" y="63">A-WALL</text>
+      <text class="plan-text" x="568" y="103">A-DOOR</text>
+    </svg>
+    <figcaption class="fig0-caption mono">图 0 — 我的模型学着读的东西：图元 · 符号 · 图层</figcaption>
+  </figure>
+
+  <!-- About -->
+  <section class="about" aria-label="简介">
+    <div>
+      <p>
+        我在上海负责华建集团<a href="https://github.com/ArchiAI-LAB">建筑AI实验室（ArchiAI Lab）</a>，
+        带领一支跨学科团队研究面向建成环境的人工智能。我的研究始终围绕一个问题：
+        <em>机器能否像工程师一样读懂工程图纸？</em>
+      </p>
+      <p>
+        围绕这个目标，我的工作包括 CAD 图纸的矢量多模态模型、大规模开源数据集
+        （<a href="https://archiai-lab.github.io/ArchCAD.github.io/">ArchCAD-400K</a>，NeurIPS 2025）、
+        以及 AEC 领域的大模型评测基准
+        （<a href="https://arxiv.org/abs/2509.18776">AECBench</a>，<i>Advanced Engineering Informatics</i>）。
+        更早之前，我在同济大学的博士研究将强化学习与蒙特卡洛树搜索用于结构智能设计。
+        我同时担任同济大学校外硕士生导师。
+      </p>
+    </div>
+    <div class="portrait">
+      <img src="../assets/portrait.jpg" alt="罗睿锋">
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section id="research" aria-label="研究方向">
+    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>研究方向 · 按图层</h2><span class="tick" aria-hidden="true"></span></div>
+
+    <div class="layer">
+      <span class="layer-code mono"><span class="swatch" aria-hidden="true"></span>L-01 · DRAWING-INTEL</span>
+      <div>
+        <h3>工程图纸矢量多模态模型</h3>
+        <p>让模型原生读懂 CAD——全景符号识别、矢量线表示，
+        以及让大规模标注成本可负担的数据引擎。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <span class="layer-code mono"><span class="swatch" aria-hidden="true"></span>L-02 · AEC-LLM-EVAL</span>
+      <div>
+        <h3>AEC 领域大模型评测</h3>
+        <p>分层评测基准，度量工程实践真正需要的能力：
+        知识记忆、理解、推理、计算与应用。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <span class="layer-code mono"><span class="swatch" aria-hidden="true"></span>L-03 · STRUCT-GEN</span>
+      <div>
+        <h3>结构智能设计</h3>
+        <p>以强化学习与蒙特卡洛树搜索驱动结构生成式设计，
+        从桁架布局到拓扑优化。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section id="news" aria-label="动态">
+    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>动态</h2><span class="tick" aria-hidden="true"></span></div>
+    <ul class="news">
+      <li><time class="mono">2026</time><p><b>AECBench</b> 发表于 <i>Advanced Engineering Informatics</i>（第 71 卷）。</p></li>
+      <li><time class="mono">2025</time><p>两篇论文被 <b>NeurIPS 2025</b> 接收：ArchCAD-400K 与 “Point or Line?”。</p></li>
+      <li><time class="mono">2025</time><p><b>ArchCAD-400K</b> 数据集在 GitHub 与 Hugging Face 开源——41.3 万条标注、5,538 张图纸。</p></li>
+    </ul>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications" aria-label="代表论文">
+    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>代表论文</h2><span class="tick" aria-hidden="true"></span></div>
+
+    <article class="pub">
+      <div class="venue mono">NeurIPS 2025<span class="role">第一作者</span></div>
+      <div>
+        <h3><a href="https://arxiv.org/abs/2503.22346">ArchCAD-400K: A Large-Scale CAD Drawings Dataset and New Baseline for Panoptic Symbol Spotting</a></h3>
+        <p class="desc">来自 5,538 张标准化图纸、覆盖 27 个类别的 41.3 万条标注——规模为此前最大 CAD
+        数据集的 26 倍——并提出结构感知标注引擎与 DPSS 基线模型。</p>
+        <div class="links mono">
+          <a href="https://arxiv.org/abs/2503.22346">arXiv</a>
+          <a href="https://archiai-lab.github.io/ArchCAD.github.io/">项目主页</a>
+          <a href="https://github.com/ArchiAI-LAB/ArchCAD">代码</a>
+          <a href="https://huggingface.co/papers/2503.22346">数据</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="pub">
+      <div class="venue mono">NeurIPS 2025<span class="role">合作作者</span></div>
+      <div>
+        <h3><a href="https://papers.nips.cc/paper_files/paper/2025/file/4791edcba96fbd82a8962b0f790b52c9-Paper-Conference.pdf">Point or Line? Using Line-based Representation for Panoptic Symbol Spotting in CAD Drawings</a></h3>
+        <p class="desc">VecFormer：面向 CAD 图纸全景符号识别的矢量图元线表示方法。</p>
+        <div class="links mono">
+          <a href="https://papers.nips.cc/paper_files/paper/2025/file/4791edcba96fbd82a8962b0f790b52c9-Paper-Conference.pdf">PDF</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="pub">
+      <div class="venue mono">Adv. Eng. Informatics 2026<span class="role">通讯作者</span></div>
+      <div>
+        <h3><a href="https://arxiv.org/abs/2509.18776">AECBench: A Hierarchical Benchmark for Knowledge Evaluation of Large Language Models in the AEC Field</a></h3>
+        <p class="desc">4,800 道题、23 项任务、五级认知层次——首个面向建筑工程（AEC）领域的大模型知识
+        分层评测基准。</p>
+        <div class="links mono">
+          <a href="https://arxiv.org/abs/2509.18776">arXiv</a>
+          <a href="https://github.com/ArchiAI-LAB/AECBench">代码</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="pub">
+      <div class="venue mono">Buildings 2022<span class="role">第一作者</span></div>
+      <div>
+        <h3><a href="https://www.mdpi.com/2075-5309/12/5/641">AlphaTruss: Monte Carlo Tree Search for Optimal Truss Layout Design</a></h3>
+        <p class="desc">在应力、位移与屈曲约束下，用蒙特卡洛树搜索求解桁架布局最优设计。</p>
+        <div class="links mono">
+          <a href="https://www.mdpi.com/2075-5309/12/5/641">论文</a>
+        </div>
+      </div>
+    </article>
+
+    <p class="fullwidth-note">
+      完整论文列表见 <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Google Scholar</a>。
+    </p>
+  </section>
+
+  <!-- Contact / footer -->
+  <footer id="contact" aria-label="联系方式">
+    <div class="footblock">
+      <div class="tb-cell">
+        <span class="tb-label mono">联系</span>
+        <div class="contact-links">
+          <a href="mailto:ruifengluo.tj@gmail.com">ruifengluo.tj@gmail.com</a>
+        </div>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label mono">档案</span>
+        <div class="contact-links">
+          <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Scholar</a>
+          <a href="https://github.com/ArchiAI-LAB">GitHub</a>
+        </div>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label mono">设计人</span>
+        <span class="tb-value">罗睿锋</span>
+      </div>
+    </div>
+    <div class="foot-strip mono">
+      <span>© 2026 罗睿锋 Ruifeng Luo</span>
+      <span>Archivo · Source Serif · Plex Mono</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
