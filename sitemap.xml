@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ruifengluo.com/</loc>
+    <lastmod>2026-07-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ruifengluo.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ruifengluo.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ruifengluo.com/"/>
+  </url>
+  <url>
+    <loc>https://ruifengluo.com/zh/</loc>
+    <lastmod>2026-07-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ruifengluo.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://ruifengluo.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ruifengluo.com/"/>
+  </url>
+</urlset>
