@@ -12,11 +12,68 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FBFAF6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1B2D" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://ruifengluo.com/zh/">
+<meta property="og:site_name" content="罗睿锋 Ruifeng Luo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="罗睿锋 Ruifeng Luo — 工程智能 AI for Engineering">
+<meta property="og:description" content="华建集团 建筑AI实验室 主任。工程图纸矢量多模态模型、AEC 领域大模型评测、结构智能设计。ArchCAD-400K 与 AECBench 作者。">
+<meta property="og:image" content="https://ruifengluo.com/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="罗睿锋 Ruifeng Luo — 工程智能 AI for Engineering">
+<meta name="twitter:description" content="华建集团 建筑AI实验室 主任。ArchCAD-400K 与 AECBench 作者。">
+<meta name="twitter:image" content="https://ruifengluo.com/assets/og-card.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ruifeng Luo",
+  "alternateName": "罗睿锋",
+  "url": "https://ruifengluo.com/",
+  "image": "https://ruifengluo.com/assets/portrait.jpg",
+  "jobTitle": "Director, ArchiAI Lab",
+  "worksFor": { "@type": "Organization", "name": "Arcplus Group" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Tongji University" },
+  "knowsAbout": ["AI for Engineering", "CAD Drawing Understanding", "Multimodal Learning", "LLM Evaluation", "Structural Optimization"],
+  "sameAs": [
+    "https://scholar.google.com/citations?user=3C0rPHsAAAAJ",
+    "https://github.com/ArchiAI-LAB",
+    "https://github.com/ruifeng-luo",
+    "https://huggingface.co/jackluoluo"
+  ]
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' fill='%23FBFAF6' stroke='%2324519B' stroke-width='2.5'/%3E%3Ctext x='16' y='21.5' font-family='monospace' font-size='13' font-weight='bold' fill='%2324519B' text-anchor='middle'%3ERL%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* Self-hosted fonts (latin subsets, variable where available) */
+  @font-face {
+    font-family: 'Archivo'; font-style: normal; font-weight: 500 800;
+    font-stretch: 100%; font-display: swap;
+    src: url('../assets/fonts/Archivo-500.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Source Serif 4'; font-style: normal; font-weight: 400 600;
+    font-display: swap;
+    src: url('../assets/fonts/SourceSerif4-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Source Serif 4'; font-style: italic; font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/SourceSerif4-400-italic.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/IBMPlexMono-400.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500;
+    font-display: swap;
+    src: url('../assets/fonts/IBMPlexMono-500.woff2') format('woff2');
+  }
+
   :root {
     color-scheme: light dark;
     --paper: #FBFAF6;
@@ -239,6 +296,33 @@
   .pub .links a:hover { color: var(--draft-blue); border-bottom: none; }
   .fullwidth-note { margin-top: 16px; color: var(--muted); font-size: 14.5px; }
 
+  /* ---------- BibTeX ---------- */
+  .pub details.bib { margin-top: 9px; }
+  .pub details.bib summary {
+    cursor: pointer; display: inline-block; list-style: none;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .pub details.bib summary::-webkit-details-marker { display: none; }
+  .pub details.bib summary::before { content: "["; color: var(--muted); }
+  .pub details.bib summary::after { content: "]"; color: var(--muted); }
+  .pub details.bib summary:hover, .pub details.bib[open] summary { color: var(--draft-blue); }
+  .bibbox { position: relative; margin-top: 8px; border: 1px solid var(--line); background: var(--cell); }
+  .bibbox pre {
+    padding: 12px 88px 12px 14px; overflow-x: auto;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; line-height: 1.55; color: var(--muted);
+  }
+  .copybib {
+    position: absolute; top: 8px; right: 8px;
+    font-family: "IBM Plex Mono", "PingFang SC", ui-monospace, monospace;
+    font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 4px 9px; border: 1px solid var(--line);
+    background: var(--paper); color: var(--ink); cursor: pointer;
+  }
+  .copybib:hover { color: var(--draft-blue); border-color: var(--draft-blue); }
+
   /* ---------- Footer title block ---------- */
   footer { margin-top: 70px; padding-bottom: 44px; }
   .footblock {
@@ -345,6 +429,7 @@
     <a href="#research">研究方向</a>
     <a href="#news">动态</a>
     <a href="#publications">代表论文</a>
+    <a href="#service">兼职</a>
     <a href="#contact">联系</a>
     <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Google Scholar ↗</a>
     <a href="https://github.com/ArchiAI-LAB">GitHub ↗</a>
@@ -488,6 +573,23 @@
           <a href="https://github.com/ArchiAI-LAB/ArchCAD">代码</a>
           <a href="https://huggingface.co/datasets/jackluoluo/ArchCAD">数据</a>
         </div>
+        <details class="bib">
+          <summary>BibTeX</summary>
+          <div class="bibbox">
+            <button class="copybib" type="button">复制</button>
+            <pre>@inproceedings{NEURIPS2025_b96ce7d3,
+ author = {Luo, Ruifeng and Liu, Zhengjie and Cheng, Tianxiao and Wang, Jie and Wang, Tongjie and Cheng, Fei and Chai, Fu and Li, Yanpeng and Wei, Xingguang and Wang, Haomin and Ye, Shenglong and Wang, Wenhai and Zhang, Zhang and Qiao, Yu and Zhang, Hongjie and Zhao, Xianzhong},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {D. Belgrave and C. Zhang and H. Lin and R. Pascanu and P. Koniusz and M. Ghassemi and N. Chen},
+ pages = {127715--127739},
+ publisher = {Curran Associates, Inc.},
+ title = {ArchCAD-400K: A Large-Scale CAD drawings Dataset and New Baseline for Panoptic Symbol Spotting},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2025/file/b96ce7d38339874a8704e8895f743284-Paper-Conference.pdf},
+ volume = {38},
+ year = {2025}
+}</pre>
+          </div>
+        </details>
       </div>
     </article>
 
@@ -499,6 +601,23 @@
         <div class="links mono">
           <a href="https://papers.nips.cc/paper_files/paper/2025/file/4791edcba96fbd82a8962b0f790b52c9-Paper-Conference.pdf">PDF</a>
         </div>
+        <details class="bib">
+          <summary>BibTeX</summary>
+          <div class="bibbox">
+            <button class="copybib" type="button">复制</button>
+            <pre>@inproceedings{NEURIPS2025_4791edcb,
+ author = {Wei, Xingguang and Wang, Haomin and Ye, Shenglong and Luo, Ruifeng and Zhang, Zhang and Gu, Lixin and Dai, Jifeng and Qiao, Yu and Wang, Wenhai and Zhang, Hongjie},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {D. Belgrave and C. Zhang and H. Lin and R. Pascanu and P. Koniusz and M. Ghassemi and N. Chen},
+ pages = {50036--50061},
+ publisher = {Curran Associates, Inc.},
+ title = {Point or Line? Using Line-based Representation for Panoptic Symbol Spotting in CAD Drawings},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2025/file/4791edcba96fbd82a8962b0f790b52c9-Paper-Conference.pdf},
+ volume = {38},
+ year = {2025}
+}</pre>
+          </div>
+        </details>
       </div>
     </article>
 
@@ -512,6 +631,25 @@
           <a href="https://arxiv.org/abs/2509.18776">arXiv</a>
           <a href="https://github.com/ArchiAI-LAB/AECBench">代码</a>
         </div>
+        <details class="bib">
+          <summary>BibTeX</summary>
+          <div class="bibbox">
+            <button class="copybib" type="button">复制</button>
+            <pre>@article{Liang_2026,
+ author = {Liang, Chen and Huang, Zhaoqi and Wang, Haofen and Chai, Fu and Yu, Chunying and Wei, Huanhuan and Liu, Zhengjie and Li, Yanpeng and Wang, Hongjun and Luo, Ruifeng and Zhao, Xianzhong},
+ title = {AECBench: A hierarchical benchmark for knowledge evaluation of large language models in the AEC field},
+ journal = {Advanced Engineering Informatics},
+ volume = {71},
+ pages = {104314},
+ year = {2026},
+ month = apr,
+ issn = {1474-0346},
+ doi = {10.1016/j.aei.2026.104314},
+ url = {http://dx.doi.org/10.1016/j.aei.2026.104314},
+ publisher = {Elsevier BV}
+}</pre>
+          </div>
+        </details>
       </div>
     </article>
 
@@ -523,12 +661,41 @@
         <div class="links mono">
           <a href="https://www.mdpi.com/2075-5309/12/5/641">论文</a>
         </div>
+        <details class="bib">
+          <summary>BibTeX</summary>
+          <div class="bibbox">
+            <button class="copybib" type="button">复制</button>
+            <pre>@article{Luo_2022,
+ author = {Luo, Ruifeng and Wang, Yifan and Xiao, Weifang and Zhao, Xianzhong},
+ title = {AlphaTruss: Monte Carlo Tree Search for Optimal Truss Layout Design},
+ journal = {Buildings},
+ volume = {12},
+ number = {5},
+ pages = {641},
+ year = {2022},
+ month = may,
+ issn = {2075-5309},
+ doi = {10.3390/buildings12050641},
+ url = {http://dx.doi.org/10.3390/buildings12050641},
+ publisher = {MDPI AG}
+}</pre>
+          </div>
+        </details>
       </div>
     </article>
 
     <p class="fullwidth-note">
       完整论文列表见 <a href="https://scholar.google.com/citations?user=3C0rPHsAAAAJ">Google Scholar</a>。
     </p>
+  </section>
+
+  <!-- 学术兼职 -->
+  <section id="service" aria-label="学术兼职">
+    <div class="dim"><span class="tick" aria-hidden="true"></span><h2>学术兼职</h2><span class="tick" aria-hidden="true"></span></div>
+    <ul class="news">
+      <li><time class="mono">学会</time><p>CCF 计算机辅助设计与图形学专业委员会 委员。</p></li>
+      <li><time class="mono">导师</time><p>同济大学、上海交通大学、上海工程技术大学 校外硕士生导师。</p></li>
+    </ul>
   </section>
 
   <!-- Contact / footer -->
@@ -559,5 +726,15 @@
   </footer>
 
 </div>
+<script>
+document.querySelectorAll('.copybib').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(btn.nextElementSibling.textContent.trim()).then(function () {
+      btn.textContent = '已复制 ✓';
+      setTimeout(function () { btn.textContent = '复制'; }, 1500);
+    });
+  });
+});
+</script>
 </body>
 </html>
