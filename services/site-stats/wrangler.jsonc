@@ -1,0 +1,16 @@
+{
+  "name": "ruifengluo-site-stats",
+  "main": "worker.mjs",
+  "account_id": "2205ab94335dcdcdd419b8497e3abbc8",
+  "compatibility_date": "2026-10-23",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "ruifengluo.com/api/site-stats*", "zone_name": "ruifengluo.com" },
+    { "pattern": "www.ruifengluo.com/api/site-stats*", "zone_name": "ruifengluo.com" }
+  ],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "ruifengluo-site-stats", "database_id": "12a80295-86a4-42b4-866b-0d628050f610" }
+  ],
+  "observability": { "enabled": true }
+}
